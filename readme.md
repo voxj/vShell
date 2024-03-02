@@ -1,6 +1,9 @@
 # VSHELL
 ## vShell is a shell made by voxj., that allows you to add extensions!
 <br><br>
+# REQUIREMENTS
+## A Linux machine will work well. I used Manjaro and it worked.
+<br><br>
 # HOW TO USE?
 ## The installation is very simple!
 ### 1. [get the latest release from Releases](https://github.com/voxj/vShell/releases/)

@@ -1,5 +1,5 @@
 def ver():
-  print(f"{blue}vHook v1.0{reset}")
+  print(f"{blue}vHook v1.1{reset}")
 
 while True:
   try:
@@ -16,9 +16,9 @@ while True:
   except Exception:
     print('vHook resulted in an error. We\'ll try to fix it.')
     import os
-    os.system('py -m pip install requests')
+    os.system('python -m pip install requests')
     os.system('pip install requests')
-    os.system('py -m pip install colorama')
+    os.system('python -m pip install colorama')
     os.system('pip install colorama')
     import requests
     import json
@@ -34,7 +34,7 @@ def helpvhk():
   print('send - Sends a message using a webhook')
 def initialize():
   if log == True:
-    print(f'{blue}vHook v1.0{reset}')
+    print(f'{blue}vHook v1.1{reset}')
   else:
     pass
 def sendds():

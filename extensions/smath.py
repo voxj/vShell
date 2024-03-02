@@ -3,13 +3,13 @@ import os
 try:
   from colorama import Fore, Style
 except Exception:
-  os.system('py -m pip install colorama')
+  os.system('python -m pip install colorama')
   os.system('pip install colorama')
   from colorama import Fore, Style
 blue = Fore.BLUE
 reset = Style.RESET_ALL
 log = lv()
-__version__ = "v1.0"
+__version__ = "v1.1"
 def ver():
   print(f"{blue}Simple Math {__version__}{reset}")
 def helpsmth():

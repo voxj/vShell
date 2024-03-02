@@ -1,6 +1,6 @@
 logging = False # if you set it to True, then when you run the shell, everything that has the ability to, will log stuff.
 
-__version__ = "1.0"
+__version__ = "1.1"
 import os
 dir = os.path.dirname(os.path.realpath(__file__))
 def lv():
@@ -12,7 +12,7 @@ def main():
     from importlib import import_module
   except Exception:
     print('vShell resulted in an error. We\'ll try to fix it.')
-    os.system('py -m pip install colorama')
+    os.system('python -m pip install colorama')
     os.system('pip install colorama')
     from colorama import Fore, Style
     import glob
@@ -41,7 +41,7 @@ def main():
           elif logging == False:
             pass
   init()
-  print(f'{blue}vShell v1.0{reset}')
+  print(f'{blue}vShell v{__version__}{reset}')
   while True:
     try:
       x = input(f'{dir}> ').lower()

@@ -6,7 +6,7 @@
 ### 1. [get the latest release from Releases](https://github.com/voxj/vShell/releases/)
 ### 2. make sure you have the latest possible version of [Python](https://python.org/)
 ### 3. run main.py - it will get the modules automatically!
-## 4. Enjoy!
+### 4. Enjoy!
 ## NOTE: if it doesn't work for you and you're using Linux, i have the same problem, so waiting for a pull request
 <br><br>
 # GUIDE

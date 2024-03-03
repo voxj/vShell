@@ -3,15 +3,16 @@ import os
 try:
   from colorama import Fore, Style
 except Exception:
+  print(f'{__name__} resulted in an error. We\'ll try to fix it.')
   os.system('python -m pip install colorama')
   os.system('pip install colorama')
   from colorama import Fore, Style
 blue = Fore.BLUE
 reset = Style.RESET_ALL
 log = lv()
-__version__ = "v1.1"
+__version__ = "1.2"
 def ver():
-  print(f"{blue}Simple Math {__version__}{reset}")
+  print(f"{blue}Simple Math v{__version__}{reset}")
 def helpsmth():
   print("Commands for Simple Math")
   print("sum - Summary")

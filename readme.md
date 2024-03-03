@@ -10,7 +10,7 @@
 ### 2. make sure you have the latest possible version of [Python](https://python.org/)
 ### 3. run main.py - it will get the modules automatically!
 ### 4. Enjoy!
-## NOTE: if it doesn't work for you and you're using Windows, i have the same problem, so waiting for a pull request
+## NOTE: it works only on Linux.
 <br><br>
 # GUIDE
 ### A guide to making extensions will be added soon.

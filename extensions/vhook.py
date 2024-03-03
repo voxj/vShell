@@ -1,5 +1,7 @@
+__version__ = "1.2"
+
 def ver():
-  print(f"{blue}vHook v1.1{reset}")
+  print(f"{blue}vHook {__version__}{reset}")
 
 while True:
   try:
@@ -14,12 +16,14 @@ while True:
     log = lv()
     break
   except Exception:
-    print('vHook resulted in an error. We\'ll try to fix it.')
+    print(f'{__name__} resulted in an error. We\'ll try to fix it.')
     import os
     os.system('python -m pip install requests')
     os.system('pip install requests')
     os.system('python -m pip install colorama')
     os.system('pip install colorama')
+    os.system('pacman -S python-colorama')
+    os.system('pacman -S python-requests')
     import requests
     import json
     from colorama import Fore, Style
@@ -32,6 +36,8 @@ while True:
 def helpvhk():
   print('Commands for vHook')
   print('send - Sends a message using a webhook')
+  print('ver vhook - shows the version of the extension')
+  print('help vhook - shows this message')
 def initialize():
   if log == True:
     print(f'{blue}vHook v1.1{reset}')
@@ -56,8 +62,7 @@ def send_discord_message(url, content):
     except Exception as e:
       print(f'{red}An error occured: {e}{reset}')
       pass
-def version():
-  print('')
 def register_commands(commands):
   commands['send'] = sendds
   commands['ver vhook'] = ver
+  commands['help vhook'] = helpvhk

@@ -13,7 +13,7 @@
 ## NOTE: it works only on Linux.
 <br><br>
 # GUIDE
-### A guide to making extensions will be added soon.
+### The guide is [here](https://vshell-vxj.github.io/)!
 <br><br>
 # COPYRIGHT
 ### Copyright ©️ [voxj](https://vxj.is-a.dev/i/) 2022-2024

@@ -1,6 +1,11 @@
-logging = False # if you set it to True, then when you run the shell, everything that has the ability to, will log stuff.
+on = True
+off = False
 
-__version__ = "1.1"
+devMode = on # in v1.0/v1.1 it was called logger
+betaExts = on # new thing, use it to get the beta extensions
+
+logging = devMode
+__version__ = "1.2"
 import os
 dir = os.path.dirname(os.path.realpath(__file__))
 def lv():
@@ -13,6 +18,7 @@ def main():
   except Exception:
     print('vShell resulted in an error. We\'ll try to fix it.')
     os.system('python -m pip install colorama')
+    os.system('pacman -S python-colorama')
     os.system('pip install colorama')
     from colorama import Fore, Style
     import glob
@@ -31,6 +37,14 @@ def main():
         pass
       for extension_file in extension_files:
           module_name = os.path.basename(extension_file)[:-3]
+          if module_name.startswith('beta-'):
+            if betaExts == on:
+              pass
+            else:
+              os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.beta-dis')
+              print(f'A beta extension {module_name} was turned off, since you haven\'t enabled betaExts. You have to turn on betaExts and manually change the name of the extension from .py.beta-dis to .py.')
+              print('The program is gonna shutdown to prevent further crashes.')
+              exit()
           module = import_module(f'{extensions_dir}.{module_name}')
           if hasattr(module, 'initialize'):
               module.initialize()
@@ -58,20 +72,12 @@ def main():
         print(f'{blue}vShell {__version__}{reset}')
       elif x.startswith('offext'):
         module_name = x[7:]
-        if os.name == "nt":
-            os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.dis')
-            print(f'The extension won\'t be turned off until you restart the shell.')
-        else:
-            os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.dis')
-            print(f'The extension won\'t be turned off until you restart the shell.')
+        os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.dis')
+        print('The extension won\'t be turned off until you restart the shell.')
       elif x.startswith('onext'):
         module_name = x[6:]
-        if os.name == "nt":
-            os.rename(f'extensions/{module_name}.py.dis', f'extensions/{module_name}.py')
-            print(f'The extension won\'t be loaded until you restart the shell.')
-        else:
-            os.rename(f'extensions/{module_name}.py.dis', f'extensions/{module_name}.py')
-            print(f'The extension won\'t be loaded until you restart the shell.')
+        os.rename(f'extensions/{module_name}.py.dis', f'extensions/{module_name}.py')
+        print('The extension won\'t be loaded until you restart the shell.')
       elif x == 'exit':
           break
       elif x == '':

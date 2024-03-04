@@ -1,4 +1,4 @@
-__version__ = "1.2"
+__version__ = "1.3"
 
 def ver():
   print(f"{blue}vHook {__version__}{reset}")
@@ -40,7 +40,7 @@ def helpvhk():
   print('help vhook - shows this message')
 def initialize():
   if log == True:
-    print(f'{blue}vHook v1.1{reset}')
+    print(f'{blue}vHook {__version__}{reset}')
   else:
     pass
 def sendds():

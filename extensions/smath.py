@@ -10,7 +10,7 @@ except Exception:
 blue = Fore.BLUE
 reset = Style.RESET_ALL
 log = lv()
-__version__ = "1.2"
+__version__ = "1.2.1"
 def ver():
   print(f"{blue}Simple Math v{__version__}{reset}")
 def helpsmth():
@@ -21,7 +21,7 @@ def helpsmth():
   print("div - Division")
 def initialize():
   if log == True:
-    print(f'Note from {__name__}.py: The Simple Math extension may have bugs.')
+    print(f'Note from {__name__}.py: This extension may have bugs.')
   else:
     pass
 def mtp():

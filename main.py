@@ -1,8 +1,8 @@
 on = True
 off = False
 
-devMode = on # in v1.0/v1.1 it was called logger
-betaExts = on # new thing, use it to get the beta extensions
+devMode = on # Enables console logging some features
+betaExts = on # Beta extensions
 
 logging = devMode
 __version__ = "1.3"

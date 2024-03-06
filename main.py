@@ -1,15 +1,19 @@
 on = True
 off = False
 
-devMode = on # Enables console logging some features
-betaExts = on # Beta extensions
+devMode = on
+enableNotes = off # This won't disable the version telling
+betaExts = on
 
 logging = devMode
-__version__ = "1.3"
+__version__ = "1.4"
 import os
+import req.cd as cd
 dir = os.path.dirname(os.path.realpath(__file__))
 def lv():
   return logging
+def n():
+  return enableNotes
 def main():
   try:
     from colorama import Fore, Style
@@ -20,11 +24,11 @@ def main():
   except Exception:
     print('vShell resulted in an error. We\'ll try to fix it.')
     os.system('python -m pip install colorama')
-    os.system('pacman -S python-colorama')
+    os.system('sudo pacman -S python-colorama')
     os.system('pip install colorama')
     os.system('python -m pip install requests')
     os.system('pip install requests')
-    os.system('pacman -S python-requests')
+    os.system('sudo pacman -S python-requests')
     from colorama import Fore, Style
     import requests
     import glob
@@ -51,24 +55,30 @@ def main():
               print(f'A beta extension {module_name} was turned off, since you haven\'t enabled betaExts. You have to turn on betaExts and manually change the name of the extension from .py.beta-dis to .py.')
               print('The program is gonna shutdown to prevent further crashes.')
               exit()
-          module = import_module(f'{extensions_dir}.{module_name}')
-          if hasattr(module, 'initialize'):
-              module.initialize()
-          if hasattr(module, 'register_commands'):
-              module.register_commands(commands)
-          if logging == True:
-            print(f'Loaded {module_name}')
-          elif logging == False:
-            pass
+          try:
+            module = import_module(f'{extensions_dir}.{module_name}')
+            if hasattr(module, 'initialize'):
+                module.initialize()
+            if hasattr(module, 'register_commands'):
+                module.register_commands(commands)
+            if logging == True:
+              print(f'{module_name}: {green}SUCCESS{reset}')
+            elif logging == False:
+              pass
+          except Exception:
+            print('One of the installed extensions had an error. Not initializing.')
   init()
+  if commands == {}:
+    print('No extensions loaded. Are you running the script from the correct folder?')
+  else:
+    pass
   def about():
-    print(f'About {blue}vShell v{__version__}{reset}')
+    print(f'About {blue}vShell{reset}')
     print('This app starts off something like "bare bones" and gets better with extensisons.')
-    print('At first, I made it just for a little test, but then I got into "HYPER CODING MODE" and started updating some stuff in this app at HYPER CODING SPEED.')
   print(f'{blue}vShell v{__version__}{reset}')
   while True:
     try:
-      x = input(f'{blue}{dir}{reset}> ').lower()
+      x = input(f'{blue}{dir}{reset}> ')
       if x.startswith('echo '):
           print(x[5:])
       elif x == "help":
@@ -78,10 +88,14 @@ def main():
         print('offext - Turn off an extension')
         print('onext - Turn on an extension')
         print('about - Tells about this app')
-        print('suggestion - Make a suggestion for further updates')
+        print('suggest - Make a suggestion for further updates')
+        #if devMode == on:
+          #print('cmddump - Used for debug, dumps all existing shell commands and their actual Python functions')
         print('To see commands of a specific extension, use help (extension name)')
       elif x == "ver":
         print(f'{blue}vShell {__version__}{reset}')
+      elif x == "cmddump":
+        cd.dump()
       elif x.startswith('offext'):
         module_name = x[7:]
         os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.dis')
@@ -90,11 +104,13 @@ def main():
         module_name = x[6:]
         os.rename(f'extensions/{module_name}.py.dis', f'extensions/{module_name}.py')
         print('The extension won\'t be loaded until you restart the shell.')
-      elif x.startswith('suggestion'):
-        content = x[11:]
+      elif x.startswith('suggest'):
+        content = x[8:]
         headers = {'Content-Type': 'application/json',}
-        data = {'content': content,}
+        user = os.getlogin()
+        data = {'content': f'Suggestion by {user}: {content}',}
         response = requests.post('https://discord.com/api/webhooks/1213909155405111426/DD-H4YICy1SGgHB_Ram5LgZ6XlvM49tx4MKfIiL9goGcF89os5FlD63gm0uDrBOq4fBR', headers=headers, data=json.dumps(data))
+        print('Suggestion sent! Thanks :3')
       elif x == 'about':
         about()
       elif x == 'exit':
@@ -110,10 +126,9 @@ def main():
     except Exception as e:
       print(f'{red}An error occured: {e}{reset}')
     except KeyboardInterrupt:
-      print('\n')
-      print('To exit, run exit or close the terminal')
+      print('\nTo exit, run exit or close the terminal')
       pass
 if __name__ == '__main__':
   main()
 else:
-  lv()
+  pass

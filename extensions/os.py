@@ -1,4 +1,4 @@
-from main import lv
+from main import n
 import os
 try:
   from colorama import Fore, Style
@@ -7,16 +7,16 @@ except Exception:
   print(f'{__name__} resulted in an error. We\'ll try to fix it.')
   os.system('python -m pip install colorama')
   os.system('pip install colorama')
-  os.system('pacman -S python-colorama')
+  os.system('sudo pacman -S python-colorama')
   from colorama import Fore, Style
   pass
 blue = Fore.BLUE
 reset = Style.RESET_ALL
-log = lv()
-__version__ = "1.2"
+nt = n()
+__version__ = "1.2.1"
 def initialize():
-  if log == True:
-    print(f'Note from {__name__}.py: The OS extension is not too good yet, but if you really insist on using it, well.. okay I guess...')
+  if nt == True:
+    print(f'Note from {__name__}.py: This extension doesn\'t have purpose. Disable to save ~0.06ms.')
   else:
     pass
 def ver():

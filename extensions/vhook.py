@@ -1,4 +1,4 @@
-__version__ = "1.3"
+__version__ = "1.3.2"
 
 def ver():
   print(f"{blue}vHook {__version__}{reset}")
@@ -22,8 +22,8 @@ while True:
     os.system('pip install requests')
     os.system('python -m pip install colorama')
     os.system('pip install colorama')
-    os.system('pacman -S python-colorama')
-    os.system('pacman -S python-requests')
+    os.system('sudo pacman -S python-colorama')
+    os.system('sudo pacman -S python-requests')
     import requests
     import json
     from colorama import Fore, Style
@@ -40,7 +40,7 @@ def helpvhk():
   print('help vhook - shows this message')
 def initialize():
   if log == True:
-    print(f'{blue}vHook {__version__}{reset}')
+    print(f'{blue}vHook v{__version__}{reset}')
   else:
     pass
 def sendds():

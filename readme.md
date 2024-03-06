@@ -14,7 +14,7 @@
 ##
 <br><br>
 # GUIDE
-### The guide is [here](https://vshell-vxj.github.io/)!
+### The guide is [here](https://vshell-vxj.github.io/guide)!
 <br><br>
 # I FOUND A BUG, HOW TO REPORT?
 ### Report the bugs on [here](https://github.com/voxj/vShell/pulls)!

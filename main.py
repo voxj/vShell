@@ -1,19 +1,7 @@
-on = True
-off = False
-
-devMode = on
-enableNotes = off # This won't disable the version telling
-betaExts = on
-
-logging = devMode
-__version__ = "1.4"
+__version__ = "1.6"
 import os
-import req.cd as cd
+from tools import retrieve
 dir = os.path.dirname(os.path.realpath(__file__))
-def lv():
-  return logging
-def n():
-  return enableNotes
 def main():
   try:
     from colorama import Fore, Style
@@ -35,12 +23,20 @@ def main():
     from importlib import import_module
   reset = Style.RESET_ALL
   red = Fore.RED
+  false = False
+  true = True
   green = Fore.GREEN
   blue = Fore.BLUE
   extensions_dir = 'extensions'
   extension_files = glob.glob(f'{extensions_dir}/*.py')
   commands = {}
   def init():
+      with open('settings.json', 'r') as stgs:
+        data = json.load(stgs)
+      devMode = data['devMode']
+      logging = devMode
+      enableNotes = data['Notes']
+      betaExts = data['betaExts']
       if logging == True:
         print('Loading extensions')
       elif logging == False:
@@ -48,7 +44,7 @@ def main():
       for extension_file in extension_files:
           module_name = os.path.basename(extension_file)[:-3]
           if module_name.startswith('beta-'):
-            if betaExts == on:
+            if betaExts == True:
               pass
             else:
               os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.beta-dis')
@@ -65,8 +61,13 @@ def main():
               print(f'{module_name}: {green}SUCCESS{reset}')
             elif logging == False:
               pass
-          except Exception:
-            print('One of the installed extensions had an error. Not initializing.')
+          except Exception as e:
+            print(f'The extension {module_name} had an error. Not initializing.')
+            ad = input('Would you like to see the error cause? ')
+            if ad.lower() == "y":
+              print(e)
+            else:
+              pass
   init()
   if commands == {}:
     print('No extensions loaded. Are you running the script from the correct folder?')
@@ -78,24 +79,61 @@ def main():
   print(f'{blue}vShell v{__version__}{reset}')
   while True:
     try:
-      x = input(f'{blue}{dir}{reset}> ')
-      if x.startswith('echo '):
+      with open('settings.json', 'r') as stgs:
+        data = json.load(stgs)
+      if data['echo'] == True:
+        x = input(f'{blue}{dir}{reset}> ')
+      else:
+        x = input()
+      if x == "echo on":
+          data['echo'] = True
+      elif x == "echo off":
+          data['echo'] = False
+      elif x.startswith('echo '):
           print(x[5:])
+      elif x == "echo":
+        pass
       elif x == "help":
-        print("Commands")
+        print("Commands • Page 1")
         print("help - Shows this message")
-        print("ver - Shows the version of vShell, but you can put the extension name after ver (aka ver smath) and it'll tell you the version of the module")
-        print('offext - Turn off an extension')
-        print('onext - Turn on an extension')
+        print("ver/ver [extension-name]- Shows the version of vShell, but you can put the extension name after ver (aka ver smath) and it'll tell you the version of the module")
+        print('offext [extension] - Turn off an extension')
+        print('onext [extension] - Turn on an extension')
+        print('echo [text] - Echo\'s your text')
+        print('echo on/off - Turns on/off the location> input')
         print('about - Tells about this app')
-        print('suggest - Make a suggestion for further updates')
-        #if devMode == on:
-          #print('cmddump - Used for debug, dumps all existing shell commands and their actual Python functions')
+        print('suggest [text] - Make a suggestion for further updates')
+        if retrieve.dm():
+          print('cmddump - Used for debug, dumps all existing shell commands and their actual Python functions')
+        print('Page 1 out of 2. Use help 2 to see page 2.')
+        print('To see commands of a specific extension, use help (extension name)')
+      elif x == "help 2":
+        print("Commands • Page 2")
+        print('help 2 - Shows this message')
+        print("devMode on/off - Turns developer mode on/off (For debug, old name: logger)")
+        print("betaExts on/off - Turns beta extensions on/off, currently doesn't do anything")
+        print("notes on/off - Turns the startup notes on/off")
+        print("reload - Reloads the shell")
+        print('Page 2 out of 2. Use help to see page 1.')
         print('To see commands of a specific extension, use help (extension name)')
       elif x == "ver":
         print(f'{blue}vShell {__version__}{reset}')
+      elif x == "betaExts on":
+        data['betaExts'] = true
+      elif x == "reload":
+        main()
+      elif x == "betaExts off":
+        data['betaExts'] = false
+      elif x == "devMode on":
+        data['devMode'] = true
+      elif x == "devMode off":
+        data['devMode'] = false
       elif x == "cmddump":
-        cd.dump()
+        print(commands)
+      elif x == "notes on":
+        data['Notes'] = true
+      elif x == "notes off":
+        data['Notes'] = false
       elif x.startswith('offext'):
         module_name = x[7:]
         os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.dis')
@@ -123,6 +161,8 @@ def main():
               command()
           else:
               print(f'{red}{x} is not a valid command or an application, run help to see commands{reset}')
+      with open('settings.json', 'w') as stgs:
+        json.dump(data, stgs)
     except Exception as e:
       print(f'{red}An error occured: {e}{reset}')
     except KeyboardInterrupt:

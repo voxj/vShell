@@ -1,5 +1,6 @@
-__version__ = "1.3.2"
-
+__version__ = "1.3.3"
+from tools import retrieve
+devMode = retrieve.dm()
 def ver():
   print(f"{blue}vHook {__version__}{reset}")
 
@@ -12,8 +13,6 @@ while True:
     red = Fore.RED
     reset = Style.RESET_ALL
     blue = Fore.BLUE
-    from main import lv
-    log = lv()
     break
   except Exception:
     print(f'{__name__} resulted in an error. We\'ll try to fix it.')
@@ -30,8 +29,6 @@ while True:
     red = Fore.RED
     reset = Style.RESET_ALL
     blue = Fore.BLUE
-    from main import lv
-    log = lv()
     break
 def helpvhk():
   print('Commands for vHook')
@@ -39,7 +36,7 @@ def helpvhk():
   print('ver vhook - shows the version of the extension')
   print('help vhook - shows this message')
 def initialize():
-  if log == True:
+  if devMode == True:
     print(f'{blue}vHook v{__version__}{reset}')
   else:
     pass
@@ -52,7 +49,7 @@ def send_discord_message(url, content):
     data = {'content': content,}
     response = requests.post(url, headers=headers, data=json.dumps(data))
     try:
-      if log == True:
+      if devMode == True:
           print(f'Done: {response.status_code}')
       else:
         if response.status_code == 204:

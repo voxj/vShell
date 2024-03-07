@@ -1,4 +1,5 @@
-from main import n
+from tools import retrieve
+nt = retrieve.nt()
 import os
 try:
   from colorama import Fore, Style
@@ -10,8 +11,7 @@ except Exception:
   from colorama import Fore, Style
 blue = Fore.BLUE
 reset = Style.RESET_ALL
-log = n()
-__version__ = "1.3"
+__version__ = "1.3.1"
 def ver():
   print(f"{blue}Simply, Math v{__version__}{reset}")
 def helpsmth():
@@ -23,7 +23,7 @@ def helpsmth():
   print("exp - Exponentation (or pow - Power)")
   print('xor - XOR')
 def initialize():
-  if log == True:
+  if nt == True:
     print(f'Note from {__name__}.py: This extension may have bugs.')
   else:
     pass

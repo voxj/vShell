@@ -1,6 +1,10 @@
 # VSHELL
 ## vShell is a shell made by voxj., that allows you to add extensions!
 <br><br>
+# NOTE
+### The repository's files might be outdated from the release.
+##
+<br><br>
 # REQUIREMENTS
 ### Both Linux and Windows are supported as of v1.4. The version before that might have support, but I haven't checked them. Message me if you found an older release that works on any contact in [here](https://vxj.is-a.dev/contact).
 ##
@@ -17,7 +21,7 @@
 ### The guide is [here](https://vshell-vxj.github.io/g)!
 <br><br>
 # I FOUND A BUG, HOW TO REPORT?
-### Report the bugs on [here](https://github.com/voxj/vShell/pulls)!
+### Report the bugs using [this](https://github.com/voxj/vShell/pulls)!
 ##
 <br><br>
 # COPYRIGHT

@@ -1,5 +1,5 @@
 # VSHELL
-## vShell is a shell made by voxj., that allows you to add extensions!
+## Starts off bare bones, gets better with extensions. ✨
 <br><br>
 # NOTE
 ### The repository's files might be outdated from the release.

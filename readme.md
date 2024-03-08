@@ -6,7 +6,7 @@
 ##
 <br><br>
 # REQUIREMENTS
-### Both Linux and Windows are supported as of v1.4. The version before that might have support, but I haven't checked them. Message me if you found an older release that works on any contact in [here](https://vxj.is-a.dev/contact).
+### Both Linux and Windows are supported as of v1.2.
 ##
 <br><br>
 # HOW TO USE?

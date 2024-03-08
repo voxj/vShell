@@ -1,6 +1,8 @@
-__version__ = "1.6"
+__version__ = "1.7"
 import os
 from tools import retrieve
+def cont():
+  pass
 dir = os.path.dirname(os.path.realpath(__file__))
 def main():
   try:
@@ -31,8 +33,17 @@ def main():
   extension_files = glob.glob(f'{extensions_dir}/*.py')
   commands = {}
   def init():
-      with open('settings.json', 'r') as stgs:
-        data = json.load(stgs)
+    with open('settings.json', 'r') as stgs:
+      data = json.load(stgs)
+      if retrieve.st() == "release" or retrieve.st() == "Release":
+        pass
+      else:
+        if retrieve.fr() == true:
+          print(f'{red}vShell v{__version__} is currently in {retrieve.st()} state. Use only at your risk.{reset}')
+        elif retrieve.sa() == true:
+          print(f'{red}vShell v{__version__} is currently in {retrieve.st()} state. Use only at your risk.{reset}')
+        else:
+          pass
       devMode = data['devMode']
       logging = devMode
       enableNotes = data['Notes']
@@ -66,17 +77,20 @@ def main():
             ad = input('Would you like to see the error cause? ')
             if ad.lower() == "y":
               print(e)
-            else:
-              pass
   init()
   if commands == {}:
     print('No extensions loaded. Are you running the script from the correct folder?')
   else:
     pass
+  with open('settings.json','r') as a:
+    data = json.load(a)
   def about():
     print(f'About {blue}vShell{reset}')
     print('This app starts off something like "bare bones" and gets better with extensisons.')
-  print(f'{blue}vShell v{__version__}{reset}')
+  if retrieve.st() == "release" or retrieve.st() == "Release":
+    print(f'{blue}vShell v{__version__}{reset}')
+  else:
+    print(f'{blue}vShell v{__version__} {red}{retrieve.st()}{reset}')
   while True:
     try:
       with open('settings.json', 'r') as stgs:
@@ -86,14 +100,14 @@ def main():
       else:
         x = input()
       if x == "echo on":
-          data['echo'] = True
+        data['echo'] = True
       elif x == "echo off":
-          data['echo'] = False
+        data['echo'] = False
       elif x.startswith('echo '):
-          print(x[5:])
+        print(x[5:])
       elif x == "echo":
         pass
-      elif x == "help":
+      elif x == "help" or x == "help 1":
         print("Commands • Page 1")
         print("help - Shows this message")
         print("ver/ver [extension-name]- Shows the version of vShell, but you can put the extension name after ver (aka ver smath) and it'll tell you the version of the module")
@@ -110,24 +124,48 @@ def main():
       elif x == "help 2":
         print("Commands • Page 2")
         print('help 2 - Shows this message')
-        print("devMode on/off - Turns developer mode on/off (For debug, old name: logger)")
+        print("devMode on/off - Turns developer mode on/off")
         print("betaExts on/off - Turns beta extensions on/off, currently doesn't do anything")
         print("notes on/off - Turns the startup notes on/off")
         print("reload - Reloads the shell")
+        if retrieve.st().lower() != "release":
+          print("alertonstart on/off - Turns on the alert on start on/off (it only runs for the first run if you haven't turned it on)")
         print('Page 2 out of 2. Use help to see page 1.')
         print('To see commands of a specific extension, use help (extension name)')
       elif x == "ver":
         print(f'{blue}vShell {__version__}{reset}')
-      elif x == "betaExts on":
-        data['betaExts'] = true
+      elif x.startswith('alertonstart '):
+        s = x[13:]
+        if s == "on":
+          data['NonStopAlertRadio'] = True
+          print(f'Operation {green}succesful{reset}')
+        elif s == "off":
+          data['NonStopAlertRadio'] = false
+          print(f'Operation {green}succesful{reset}')
+        else:
+          print(f'{red}{s} is not a valid argument for alertonstart{reset}')
+      elif x.startswith("betaExts "):
+        s = x[9:]
+        if s == "on":
+          data['betaExts'] = true
+          print(f'Operation {green}succesful{reset}')
+        elif s == "off":
+          data['betaExts'] = false
+          print(f'Operation {green}succesful{reset}')
+        else:
+          print(f'{red}{s} is not a valid argument for betaExts{reset}')
       elif x == "reload":
         main()
-      elif x == "betaExts off":
-        data['betaExts'] = false
-      elif x == "devMode on":
-        data['devMode'] = true
-      elif x == "devMode off":
-        data['devMode'] = false
+      elif x.startswith('devMode '):
+        s = x[8:]
+        if s == "on":
+          data['betaExts'] = True
+          print(f'Operation {green}succesful{reset}')
+        elif s == "off":
+          data['betaExts'] = false
+          print(f'Operation {green}succesful{reset}')
+        else:
+          print(f'{red}{s} is not a valid argument for betaExts{reset}')
       elif x == "cmddump":
         print(commands)
       elif x == "notes on":
@@ -146,13 +184,16 @@ def main():
         content = x[8:]
         headers = {'Content-Type': 'application/json',}
         user = os.getlogin()
-        data = {'content': f'Suggestion by {user}: {content}',}
+        ting = {'content': f'Suggestion by {user}: {content}',}
         response = requests.post('https://discord.com/api/webhooks/1213909155405111426/DD-H4YICy1SGgHB_Ram5LgZ6XlvM49tx4MKfIiL9goGcF89os5FlD63gm0uDrBOq4fBR', headers=headers, data=json.dumps(data))
         print('Suggestion sent! Thanks :3')
       elif x == 'about':
         about()
       elif x == 'exit':
-          break
+        with open('settings.json', 'w') as stgs:
+          data['firstRun'] = false
+          json.dump(data, stgs)
+        break
       elif x == '':
           pass
       else:
@@ -162,6 +203,7 @@ def main():
           else:
               print(f'{red}{x} is not a valid command or an application, run help to see commands{reset}')
       with open('settings.json', 'w') as stgs:
+        data['firstRun'] = false
         json.dump(data, stgs)
     except Exception as e:
       print(f'{red}An error occured: {e}{reset}')

@@ -1,34 +1,34 @@
 import time
 import os
 import random
+from main import dir
+from tools import acls
+def cls():
+    acls.cls()
 try:
     import colorama
 except Exception:
-  print(f'{__name__} resulted in an error. We\'ll try to fix it.')
-  os.system('python -m pip install colorama')
-  os.system('pip install colorama')
-  os.system('sudo pacman -S python-colorama')
-  try:
-    import colorama
-  except Exception:
-    print(f'Automatic error fixing for {__name__} hasn\'t worked. Please disable the extension or download a previous version of it.')
-blue = colorama.Fore.BLUE
-reset = colorama.Style.RESET_ALL
+  print(f'{__name__} has an error. Autofixes aren\'t applied due to their unstability.')
+Fore = colorama.Fore
+Style = colorama.Style
+blue = Fore.BLUE
+reset = Style.RESET_ALL
+__version__ = '1.3.1'
 def initialize():
     pass
 def prgb():
     t = random.randint(1, 5)
     try:
-        x = float(input('Time of download (in seconds): '))
+        cls()
+        x = float(input(f'{blue}{dir}{reset}> pgb '))
         if x <= 0:
-            print("Please enter a positive value for the download time.")
-        p = x / 200
-        print('0% |--------------------| 100%')
+            x = 1
+        p = x / 100
         for i in range(101):
             if t == 1:
                 print('Windows 11 Pro 24H2')
             elif t == 2:
-                print('Windows 10 Pro 22H2')
+                print('Windows 10 Pro 1903')
             elif t == 3:
                 print('Windows Vista Ultimate')
             elif t == 4:
@@ -38,14 +38,11 @@ def prgb():
             progress = i // 2
             print(f'{i}% |{"#" * progress}{"-" * (50 - progress)}| 100%')
             time.sleep(p)
-            if os.name == "nt":
-                os.system('cls')
-            else:
-                os.system('clear')
+            cls()
     except ValueError:
         print("Invalid input.")
 def vp():
-    print(f'{blue}Progress Bar v1.1{reset}')
+    print(f'{blue}Progress Bar {__version__}{reset}')
 def hp():
     print('Commands for Progress Bar')
     print('progressbar/prgb/progress/pgb - Opens a progress bar (download)')

@@ -1,4 +1,4 @@
-__version__ = "1.3.3"
+__version__ = "1.3.4"
 from tools import retrieve
 devMode = retrieve.dm()
 def ver():
@@ -10,26 +10,13 @@ while True:
     import json
     import requests
     from colorama import Fore, Style
-    red = Fore.RED
-    reset = Style.RESET_ALL
-    blue = Fore.BLUE
     break
   except Exception:
-    print(f'{__name__} resulted in an error. We\'ll try to fix it.')
-    import os
-    os.system('python -m pip install requests')
-    os.system('pip install requests')
-    os.system('python -m pip install colorama')
-    os.system('pip install colorama')
-    os.system('sudo pacman -S python-colorama')
-    os.system('sudo pacman -S python-requests')
-    import requests
-    import json
-    from colorama import Fore, Style
-    red = Fore.RED
-    reset = Style.RESET_ALL
-    blue = Fore.BLUE
+    print(f'{__name__} has an error. Autofixes aren\'t applied due to their unstability.')
     break
+red = Fore.RED
+reset = Style.RESET_ALL
+blue = Fore.BLUE
 def helpvhk():
   print('Commands for vHook')
   print('send - Sends a message using a webhook')

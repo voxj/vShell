@@ -1,9 +1,9 @@
 __version__ = "1.7"
 import os
+os.system('@echo off')
 from tools import retrieve
-def cont():
-  pass
 dir = os.path.dirname(os.path.realpath(__file__))
+dir = str(dir)
 def main():
   try:
     from colorama import Fore, Style
@@ -60,7 +60,7 @@ def main():
             else:
               os.rename(f'extensions/{module_name}.py', f'extensions/{module_name}.py.beta-dis')
               print(f'A beta extension {module_name} was turned off, since you haven\'t enabled betaExts. You have to turn on betaExts and manually change the name of the extension from .py.beta-dis to .py.')
-              print('The program is gonna shutdown to prevent further crashes.')
+              print('vShell is shutting down...')
               exit()
           try:
             module = import_module(f'{extensions_dir}.{module_name}')
@@ -80,8 +80,6 @@ def main():
   init()
   if commands == {}:
     print('No extensions loaded. Are you running the script from the correct folder?')
-  else:
-    pass
   with open('settings.json','r') as a:
     data = json.load(a)
   def about():
@@ -189,6 +187,10 @@ def main():
         print('Suggestion sent! Thanks :3')
       elif x == 'about':
         about()
+      elif x == "restart":
+        os.system('python main.py')
+      elif x == "reload":
+        os.system('D:\\WinTemp\\Python\\23-02-24\\python.exe main.py')
       elif x == 'exit':
         with open('settings.json', 'w') as stgs:
           data['firstRun'] = false

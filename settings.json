@@ -1,1 +1,1 @@
-{"echo": true, "devMode": true, "Notes": true, "betaExts": true, "verstate": "Beta", "firstRun": true, "NonStopAlertRadio": false}
+{"echo": true, "devMode": false, "Notes": false, "betaExts": false, "verstate": "Release", "firstRun": true, "NonStopAlertRadio": false}

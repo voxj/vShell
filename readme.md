@@ -11,10 +11,12 @@
 <br><br>
 # HOW TO USE?
 ## The installation is very simple!
-### 1. [get the latest release from Releases](https://github.com/voxj/vShell/releases/)
-### 2. make sure you have the latest possible version of [Python](https://python.org/)
-### 3. run main.py - it will get the modules automatically!
-### 4. Enjoy!
+### 1. [Get the latest release from Releases](https://github.com/voxj/vShell/releases/)
+### 2. Make sure you have the latest possible version of [Python](https://python.org/)
+### 3. Run py -m pip install requests
+### 4. Run py -m pip install colorama
+### 5. Run main.py
+### 6. Enjoy!
 ##
 <br><br>
 # GUIDE

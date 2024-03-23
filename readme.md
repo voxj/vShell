@@ -13,10 +13,11 @@
 ## The installation is very simple!
 ### 1. [Get the latest release from Releases](https://github.com/voxj/vShell/releases/)
 ### 2. Make sure you have the latest possible version of [Python](https://python.org/)
-### 3. Run py -m pip install requests
-### 4. Run py -m pip install colorama
-### 5. Run main.py
-### 6. Enjoy!
+### 3. Open a terminal (PowerShell, Command Prompt, Konsole, Windows Terminal)
+### 4. Run py -m pip install requests
+### 5. Run py -m pip install colorama
+### 6. Run py main.py
+### 7. Enjoy!
 ##
 <br><br>
 # GUIDE

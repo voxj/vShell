@@ -6,7 +6,7 @@
 ##
 <br><br>
 # REQUIREMENTS
-### Both Linux and Windows are supported as of v1.2.
+### Both Linux and Windows are supported as of v1.2. Older versions require Linux.
 ##
 <br><br>
 # HOW TO USE?

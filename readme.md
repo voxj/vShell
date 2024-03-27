@@ -24,8 +24,8 @@
 ### The guide is [here](https://vshell-vxj.github.io/g)!
 <br><br>
 # I FOUND A BUG, HOW TO REPORT?
-### Report the bugs using [this](https://github.com/voxj/vShell/pulls)!
+### Report the bugs using [pull requests](https://github.com/voxj/vShell/pulls)!
 ##
 <br><br>
 # COPYRIGHT
-### Copyright ©️ [voxj](https://vxj.is-a.dev/i/) 2022-2024
+### Copyright ©️ vApps LLC 2024, [voxj.](https://vxj.is-a.dev/i) 2022-2024

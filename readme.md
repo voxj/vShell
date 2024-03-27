@@ -15,7 +15,7 @@
 <h3>4. Run <code>py -m pip install requests</code></h3>
 <h3>5. Run <code>py -m pip install colorama</code></h3>
 <h3>6. Run <code>py main.py</code></h3>
-<h3>7.Enjoy!</h3>
+<h3>7. Enjoy!</h3>
 <h2></h2>
 <br><br>
 <h1 align='center'>GUIDE TO MAKING EXTENSIONS</h1>

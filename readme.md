@@ -25,4 +25,4 @@
 <h2>Report the bugs using <a href='https://github.com/voxj/vShell/pulls'>Pull Requests</a> if you know how to fix them, or <a href='https://github.com/voxj/vShell/issues'>report them to Issues</a>!</h2>
 <br><br>
 <h1 align='center'>COPYRIGHT</h1>
-<h2 align='center'>Copyright ©️ vApps LLC 2024, <a href='https://vxj.is-a.dev'>voxj.</a> 2022-2024</h2>
+<h2 align='center'>Copyright ©️ Chex 2023-2024, <a href='https://vxj.is-a.dev'>voxj.</a> 2022-2024</h2>

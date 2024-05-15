@@ -1,5 +1,5 @@
 <h1 align="center">VSHELL</h1>
-<h2 align="center">Starts off bare bones, gets better with extensions. ✨</h2>
+<h2 align="center">Starts off bare bones, gets better with extensions ✨</h2>
 <br><br>
 <h1 align='center'>NOTE</h1>
 <h2 align='center'>The repository's files might be outdated from the release.</h2>
